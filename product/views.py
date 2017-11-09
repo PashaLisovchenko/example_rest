@@ -1,26 +1,14 @@
-from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
+from rest_framework.viewsets import ModelViewSet
 from product.models import Product, Category
 from .serializer import ProductSerializer, CategorySerializer
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 
-class ProductList(ListAPIView, CreateAPIView):
-    serializer_class = ProductSerializer
-    # model = Product
-    queryset = Product.objects.all()
-
-
-class ProductDetail(UpdateAPIView, DestroyAPIView):
+class ProductViewSet(ModelViewSet):
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
 
 
-class CategoryList(ListAPIView, CreateAPIView):
+class CategoryViewSet(ModelViewSet):
     serializer_class = CategorySerializer
-    # model = Category
-    queryset = Category.objects.all()
-
-
-class CategoryDetail(UpdateAPIView, DestroyAPIView):
-    serializer_class = CategorySerializer
-    # model = Category
     queryset = Category.objects.all()
