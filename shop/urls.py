@@ -15,8 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.conf.urls import url
+from rest_framework_swagger.views import get_swagger_view
+
+schema_view = get_swagger_view(title='Shop API')
+
 
 urlpatterns = [
+    url(r'^doc/$', schema_view),
     url(r'^admin/', admin.site.urls),
     url(r'^', include('product.urls', namespace='product')),
     # url(r'^api/', include('rest_framework.urls', namespace='rest_framework'))
